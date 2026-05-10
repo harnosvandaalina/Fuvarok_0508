@@ -2,20 +2,22 @@
 package app;
 
 public class Fuvar {
-    private Fizetes fizet;
+    
     private String rsz;
     private int ido;
     private double osszeg;
+    //private Fizetes fizet;
+    private String fizetes;
 
-    public Fuvar(Fizetes fizet, String rsz, int ido, double osszeg) {
-        this.fizet = fizet;
+    public Fuvar(String rsz, int ido, double osszeg, String fizetes) {
         this.rsz = rsz;
         this.ido = ido;
         this.osszeg = osszeg;
+        this.fizetes = fizetes;
     }
 
-    public Fizetes getFizet() {
-        return fizet;
+    public String getFizet() {
+        return fizetes;
     }
 
     public String getRsz() {

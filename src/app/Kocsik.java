@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -38,6 +40,7 @@ public class Kocsik {
         mindenFizetesMeghatarozottE();
         hanyDbAuto();
         hanyFizetesiMod();
+        melyikAutoMennyiFuvar();
     }
     
     private static void osszesFuvar() {
@@ -118,6 +121,25 @@ public class Kocsik {
             fizetesiModDb.add(fuvar.getFizet());
         }
         System.out.println("7.: hányféle fizetési mód van: " + fizetesiModDb.size());
+    }
+
+    private static void melyikAutoMennyiFuvar() {
+        Map<String, Integer> melyikAutoMennyi = new HashMap<>();
+        for (Fuvar fuvar : fuvarok) {
+            String kulcs = fuvar.getRsz();
+            if(melyikAutoMennyi.containsKey(kulcs)){
+                int ertek = melyikAutoMennyi.get(kulcs);
+                melyikAutoMennyi.put(kulcs, ++ertek);
+            }else{ 
+                melyikAutoMennyi.put(kulcs, 1);
+            }
+        }
+        System.out.println("8.: melyik autó mennyi fuvart teljesített: ");
+        for (Map.Entry<String, Integer> entry : melyikAutoMennyi.entrySet()) {
+            String kulcs = entry.getKey();
+            Integer ertek = entry.getValue();
+            System.out.printf("[%s] = %d\n", kulcs, ertek);
+        }
     }
 
 }
